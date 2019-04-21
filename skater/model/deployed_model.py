@@ -93,7 +93,7 @@ class DeployedModel(ModelType):
         """
         Just use the function itself for predictions
         """
-        return requests.post(self.uri, json=data, **self.request_kwargs)
+        return requests.post(self.uri, data=data, **self.request_kwargs)
 
 
     @staticmethod
@@ -138,7 +138,7 @@ class DeployedModel(ModelType):
         predictions: arraytype
         """
         query = input_formatter(data)
-        response = requests.post(uri, json=query, **request_kwargs)
+        response = requests.post(uri, data=query, **request_kwargs)
         results = output_formatter(response)
         if transformer:
             results = transformer(results)
